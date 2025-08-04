@@ -14,12 +14,12 @@ jobs:
 
     # Optional: Build frontend Docker image
     - name: Build React Docker Image
-      run: docker build -t react-app -f Dockerfile.frontend ./frontend/myapp
+      run: docker build -t react-app -f Dockerfile.frontend .
 
 
     # Optional: Build backend Docker image
     - name: Build Node Docker Image
-      run: docker build -t node-backend -f Dockerfile.backend ./backend
+      run: docker build -t node-backend -f Dockerfile.backend .
 
     # Setup SSH key
     - name: Setup SSH

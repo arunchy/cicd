@@ -1,13 +1,13 @@
 # Stage 1: Build the React app
 FROM node:current-alpine3.22 AS builder
 WORKDIR /app
-COPY frontend/myapp/package*.json ./
-RUN npm install
-COPY frontend/myapp/ .
-RUN npm run build
+COPY frontend/myapp/package*.json ./frontend/myapp/
+RUN npm install --prefix frontend/myapp
+COPY frontend/myapp ./frontend/myapp
+RUN npm run build --prefix frontend/myapp
 
 # Stage 2: Serve the build using nginx
 FROM nginx:stable-alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/frontend/myapp/dist /usr/share/nginx/html
 EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
