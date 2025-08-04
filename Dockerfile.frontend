@@ -1,9 +1,9 @@
 # Stage 1: Build the React app
 FROM node:current-alpine3.22 AS builder
 WORKDIR /app
-COPY package*.json ./
+COPY frontend/myapp/package*.json ./
 RUN npm install
-COPY . .
+COPY frontend/myapp/ .
 RUN npm run build
 
 # Stage 2: Serve the build using nginx
